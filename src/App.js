@@ -290,14 +290,13 @@ function EducationResearch() {
 
 
 // 🔹 主程式
+// 確保 "/" 對應 Home
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />  {/* ✅ 設定首頁 */}
         <Route path="/education-research" element={<EducationResearch />} />
-            {/*<Route path="/portfolio" element={<Portfolio />} />*/}
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
