@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { 
   Container, 
   Typography, 
@@ -290,17 +291,17 @@ function EducationResearch() {
 
 
 // 🔹 主程式
-// 確保 "/" 對應 Home
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />  {/* ✅ 設定首頁 */}
+        {/* 🔹 預設導向 Home */}
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/education-research" element={<EducationResearch />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
 }
-
 export default App;
