@@ -295,11 +295,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* 🔹 預設導向 Home */}
-        <Route path="/" element={<Navigate to="/home" />} />
+        {/* ✅ 確保初次載入時會導向 `/home` */}
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/education-research" element={<EducationResearch />} />
         <Route path="/contact" element={<Contact />} />
+        {/* ✅ 若使用者輸入不存在的路徑，自動導向 Home */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
