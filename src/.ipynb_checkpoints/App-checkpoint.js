@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { 
   Container, 
   Typography, 
@@ -293,15 +293,14 @@ function EducationResearch() {
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/education-research" element={<EducationResearch />} />
-            {/*<Route path="/portfolio" element={<Portfolio />} />*/}
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </Router>
   );
 }
-
 export default App;

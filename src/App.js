@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { 
   Container, 
@@ -295,13 +294,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* ✅ 確保初次載入時會導向 `/home` */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/education-research" element={<EducationResearch />} />
         <Route path="/contact" element={<Contact />} />
-        {/* ✅ 若使用者輸入不存在的路徑，自動導向 Home */}
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </Router>
   );
