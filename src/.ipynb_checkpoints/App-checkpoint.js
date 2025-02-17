@@ -1,5 +1,6 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate, Link } from "react-router-dom";
+
 import { 
   Container, 
   Typography, 
@@ -293,6 +294,8 @@ function EducationResearch() {
 function App() {
   return (
     <Router>
+    {/* 🔹 這樣確保導航列始終顯示 */}
+      <Navbar />  
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
