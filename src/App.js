@@ -68,32 +68,33 @@ function Home() {
 
 
 
-          {/* 🔹 LinkedIn & GitHub 連結 */}
-          <Box mt={2} textAlign="center">
-            <Typography variant="h6" gutterBottom>
-              Connect with me:
-            </Typography>
-            <Typography>
-              <Link 
-                href="https://www.linkedin.com/in/jou-yilee" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                sx={{ fontSize: "1.1rem", fontWeight: "bold", color: "#0077B5" }} // LinkedIn 標準藍色
-              >
-                LinkedIn
-              </Link>
-            </Typography>
-            <Typography>
-              <Link 
-                href="https://github.com/ZoeLee23277789" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                sx={{ fontSize: "1.1rem", fontWeight: "bold", color: "#333" }} // GitHub 標準黑色
-              >
-                GitHub
-              </Link>
-            </Typography>
-          </Box>
+        {/* 🔹 LinkedIn & GitHub 連結 */}
+        <Box mt={2} textAlign="center">
+          <Typography variant="h6" gutterBottom>
+            Connect with me:
+          </Typography>
+          <Typography>
+            <a 
+              href="https://www.linkedin.com/in/jou-yilee" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#0077B5", textDecoration: "none" }}
+            >
+              LinkedIn
+            </a>
+          </Typography>
+          <Typography>
+            <a 
+              href="https://github.com/ZoeLee23277789" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#333", textDecoration: "none" }}
+            >
+              GitHub
+            </a>
+          </Typography>
+        </Box>
+
         </Grid>
         
         {/* 🔹 左邊：ABOUT ME + 技能 */}
