@@ -47,10 +47,20 @@ function Home() {
         justifyContent: "right",
         background: "linear-gradient(to right, #fae6e6, #fce8e8)", // 背景漸變
         padding: "0 5%",
+         overflow: "hidden"     
       }}
     >
       {/* 左半邊：文字介紹 */}
-      <Grid container sx={{ height: "100vh" }}>
+    <Grid 
+        container 
+        sx={{ 
+          height: "100vh", 
+          display: "flex", 
+          flexWrap: "wrap" 
+        }}
+      >
+         {/* 🔹 左側文字區塊 */}         
+          
         <Grid 
           item 
           xs={12} md={6} 
@@ -58,8 +68,8 @@ function Home() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            textAlign: "right",
-            paddingRight: "0%",
+            textAlign: { xs: "center", md: "right" },
+            paddingRight: { md: "5%", xs: "0" },
           }}
         >
           {/* Hi! 文字動畫 */}
@@ -69,7 +79,7 @@ function Home() {
               fontFamily: "cursive",
               fontWeight: "bold",
               color: "#EC7696",
-              fontSize: "100px",
+              fontSize: { xs: "60px", md: "100px" }, // ✅ 手機與電腦不同大小
               animation: `${mixAnimation} 2s infinite`,
             }}
           >
@@ -95,99 +105,76 @@ function Home() {
             I'm a professional engineer from Taiwan.
           </Typography>
 
-            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: "30px", mt: 4 }}>
-              {/* HIRE ME 按鈕 */}
-              <Button
-                variant="contained"
-                onClick={() => navigate("/hire")}
-                sx={{
-                  background: "linear-gradient(45deg, #f6a5c0, #d1254f)",
-                  boxShadow: "0px 10px 30px rgba(246, 165, 192, 0.7)",
-                  color: "white",
-                  borderRadius: "50px",
-                  padding: "10px 20px",
-                  fontSize: "30px",
-                  transition: "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    background: "#c2185b",
-                    boxShadow: "0px 15px 30px rgba(210, 37, 79, 0.9)",
-                  },
-                }}
-              >
-                HIRE ME
-              </Button>
-
-              {/* ABOUT ME 按鈕 */}
-              <Button
-                variant="contained"
-                onClick={() => navigate("/about")}
-                sx={{
-                  background: "linear-gradient(45deg, #f091a0, #d1254f)",
-                  boxShadow: "0px 10px 30px rgba(240, 145, 160, 0.7)",
-                  color: "white",
-                  borderRadius: "50px",
-                  padding: "10px 20px",
-                  fontSize: "30px",
-                  transition: "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    background: "#c2185b",
-                    boxShadow: "0px 15px 30px rgba(210, 37, 79, 0.9)",
-                  },
-                }}
-              >
-                ABOUT ME
-              </Button>
-            </Box>
-
-
-
-        </Grid>
-
-        {/* 右半邊：照片區塊（修正圖片顯示） */}
-        <Grid 
-          item 
-          xs={12} md={6} 
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100vh",
-            position: "relative",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100%",
-              height: "100vh",
-              position: "absolute",
-              top: 0,
-              right: 0,
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              transform: "translateX(-40px)", // ✅ 往右移 50px
-            }}
-          >
-            {/* 這裡用 Box，而不是 Avatar，來完全控制顯示效果 */}
-            <Box
+        <Box sx={{ 
+            display: "flex", 
+            flexDirection: { xs: "column", md: "row" }, // ✅ 手機直排，電腦橫排
+            justifyContent: "right", 
+            gap: "20px", 
+            mt: 4 
+          }}>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/hire")}
               sx={{
-                width: "100%",
-                height: "115vh",
-                backgroundImage: `url(${profilePic})`,
-                backgroundSize: "contain", // **確保圖片完整顯示**
-                backgroundPosition: "top right", // **頂部不被裁切**
-                backgroundRepeat: "no-repeat",
-                borderRadius: "10px 10px 10px 0", // **左側圓角**
-                maskImage: "linear-gradient(to left, rgba(255,255,255,1) 7%, rgba(255,255,255,0) 100%)",
-                WebkitMaskImage: "linear-gradient(to left, rgba(255,255,255,1) 70%, rgba(255,255,255,0) 100%)",
-
+                background: "linear-gradient(45deg, #f6a5c0, #d1254f)",
+                color: "white",
+                borderRadius: "50px",
+                padding: "20px 30px",
+                fontSize: "25px",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.1)", background: "#c2185b" },
               }}
-            />
+            >
+              HIRE ME
+            </Button>
+
+            <Button
+              variant="contained"
+              onClick={() => navigate("/about")}
+              sx={{
+                background: "linear-gradient(45deg, #f091a0, #d1254f)",
+                color: "white",
+                borderRadius: "50px",
+                padding: "20px 30px",
+                fontSize: "25px",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.1)", background: "#c2185b" },
+              }}
+            >
+              ABOUT ME
+            </Button>
           </Box>
+
+
+
         </Grid>
+            <Grid 
+              item 
+              xs={12} 
+              md={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+              }}
+            >
+              <Box
+                sx={{
+                  width: { xs: "100%", md: "90%" },
+                  height: { xs: "75vh", md: "100vh" },
+                  backgroundImage: `url(${profilePic})`,
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  borderRadius: { xs: "10px", md: "10px 10px 10px 0" },
+                  margin: "auto",
+                }}
+              />
+            </Grid>
+
+
+
       </Grid>
     </Container>
   );

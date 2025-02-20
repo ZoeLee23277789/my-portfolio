@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, Box, Button, IconButton, Drawer, List, Lis
 import MenuIcon from "@mui/icons-material/Menu";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
@@ -22,7 +23,8 @@ function Navbar() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#9F8F89", boxShadow: "none", borderBottom: "0.1px solid #ddd" }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between", height: { xs: "70px", md: "90px" } }}>
+        
         {/* 左側 LOGO，點擊可回首頁 */}
         <Typography
           variant="h4"
@@ -45,24 +47,24 @@ function Navbar() {
                 mx: 1,
                 fontWeight: location.pathname === item.path ? "bold" : "normal",
                 borderBottom: location.pathname === item.path ? "5px solid #FFFFF0" : "none",
-                fontSize: "20px"  // ✅ 這裡改變文字大小 
+                fontSize: { xs: "10px", md: "20px" }, // ✅ 響應式大小
+                paddingX: { xs: "8px", md: "12px" }  // ✅ 避免按鈕跑版
               }}
             >
               {item.label}
             </Button>
           ))}
         </Box>
+
         {/* 右側社群媒體圖標 */}
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
           <IconButton href="https://www.linkedin.com/in/jou-yilee" target="_blank" sx={{ color: "white" }}>
-            <LinkedInIcon sx={{ fontSize: "60px" }}/>
+            <LinkedInIcon sx={{ fontSize: "40px" }}/>
           </IconButton>
           <IconButton href="https://github.com/ZoeLee23277789" target="_blank" sx={{ color: "white" }}>
-            <GitHubIcon sx={{ fontSize: "60px" }}/>
+            <GitHubIcon sx={{ fontSize: "40px" }}/>
           </IconButton>
         </Box>
-
-
 
         {/* 漢堡選單（行動版） */}
         <IconButton sx={{ display: { xs: "block", md: "none" }, color: "black" }} onClick={handleDrawerToggle}>
@@ -74,7 +76,14 @@ function Navbar() {
           <Box sx={{ width: 200, backgroundColor: "white", height: "100%" }}>
             <List>
               {navItems.map((item) => (
-                <ListItem button key={item.path} component={Link} to={item.path} onClick={handleDrawerToggle}>
+                <ListItem 
+                  button 
+                  key={item.path} 
+                  component={Link} 
+                  to={item.path} 
+                  onClick={handleDrawerToggle}
+                  sx={{ textAlign: "center", paddingY: 2 }} // ✅ 增加間距
+                >
                   <ListItemText 
                     primary={item.label} 
                     sx={{
