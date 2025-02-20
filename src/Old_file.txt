@@ -1,0 +1,516 @@
+// import React, { useState } from "react";
+// import { HashRouter as Router, Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
+// import { 
+//   Container, 
+//   Typography, 
+//   Box, 
+//   AppBar, 
+//   Toolbar, 
+//   Button, 
+//   Grid, 
+//   List, 
+//   ListItem, 
+//   ListItemText, 
+//   Avatar,
+//   Divider,
+//   IconButton,
+//   Drawer
+// } from "@mui/material";
+// import MenuIcon from "@mui/icons-material/Menu";
+// import profilePic from "./Photo.jpg"; // 確保圖片存在 src/ 或 public/ 資料夾
+
+// // // 🔹 導覽列
+// // function Navbar() {
+// //   return (
+// //     <AppBar 
+// //       position="static" 
+// //       sx={{ backgroundColor: "white", boxShadow: "none", borderBottom: "1px solid #ddd" }}
+// //     >
+// //       <Toolbar sx={{ justifyContent: "space-between" }}>
+// //         <Typography variant="h6" sx={{ color: "black" }}>
+// //           My Portfolio.
+// //         </Typography>
+// //         <Box>
+// //           <Button component={Link} to="/" sx={{ color: "black", mx: 1 }}>
+// //             Home
+// //           </Button>
+// //           <Button component={Link} to="/education-research" sx={{ color: "black", mx: 1 }}>
+// //             Education & Research
+// //           </Button>
+// // {/* <Button component={Link} to="/portfolio" sx={{ color: "black", mx: 1 }}>
+// //           //   Portfolio
+// //           // </Button>*/}
+// //           <Button component={Link} to="/contact" sx={{ color: "black", mx: 1 }}>
+// //             Contact
+// //           </Button>
+// //         </Box>
+// //       </Toolbar>
+// //     </AppBar>
+// //   );
+// // }
+// // 🔹 導覽列 Navbar
+// function Navbar() {
+//   const [mobileOpen, setMobileOpen] = useState(false);
+//   const location = useLocation();
+
+//   const handleDrawerToggle = () => {
+//     setMobileOpen(!mobileOpen);
+//   };
+
+//   const navItems = [
+//     { label: "Home", path: "/home" },
+//     { label: "Education & Research", path: "/education-research" },
+//     { label: "Contact", path: "/contact" }
+//   ];
+
+//   return (
+//     <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "none", borderBottom: "1px solid #ddd" }}>
+//       <Toolbar sx={{ justifyContent: "space-between" }}>
+//         {/* 左側標題 */}
+//         <Typography variant="h6" sx={{ color: "black", fontWeight: "bold" }}>
+//           My Portfolio.
+//         </Typography>
+
+//         {/* 桌面版選單 */}
+//         <Box sx={{ display: { xs: "none", md: "flex" } }}>
+//           {navItems.map((item) => (
+//             <Button
+//               key={item.path}
+//               component={Link}
+//               to={item.path}
+//               sx={{
+//                 color: "black",
+//                 mx: 1,
+//                 fontWeight: location.pathname === item.path ? "bold" : "normal",
+//                 borderBottom: location.pathname === item.path ? "2px solid #00BFFF" : "none"
+//               }}
+//             >
+//               {item.label}
+//             </Button>
+//           ))}
+//         </Box>
+
+//         {/* 行動版選單按鈕 */}
+//         <IconButton sx={{ display: { xs: "block", md: "none" }, color: "black" }} onClick={handleDrawerToggle}>
+//           <MenuIcon />
+//         </IconButton>
+//       </Toolbar>
+
+//       {/* 行動版選單 Drawer */}
+//       <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
+//         <Box sx={{ width: 200, backgroundColor: "white", height: "100%" }}>
+//           <List>
+//             {navItems.map((item) => (
+//               <ListItem button key={item.path} component={Link} to={item.path} onClick={handleDrawerToggle}>
+//                 <ListItemText 
+//                   primary={item.label} 
+//                   sx={{
+//                     color: location.pathname === item.path ? "#00BFFF" : "black",
+//                     textAlign: "center",
+//                     fontWeight: location.pathname === item.path ? "bold" : "normal"
+//                   }} 
+//                 />
+//               </ListItem>
+//             ))}
+//           </List>
+//         </Box>
+//       </Drawer>
+//     </AppBar>
+//   );
+// }
+// // 🔹 首頁
+
+// function Home() {
+//   return (
+//     <Container maxWidth="lg" sx={{ mt: 8 }}>
+//       <Grid container spacing={4} alignItems="center">
+          
+//         {/* 🔹 右邊：個人照片 + 社群連結（確保完全置中） */}
+//         <Grid item xs={12} md={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+//           <Avatar 
+//             src={profilePic} 
+//             alt="Jou-Yi Lee" 
+//             sx={{ width: 300, height: 300, borderRadius: "10px", boxShadow: 3 }} 
+//           />
+//           {/* 🔹 名字 */}
+//           <Typography variant="h5" fontWeight="bold" sx={{ mt: 2 }}>
+//             Jou-Yi Lee
+//           </Typography>
+
+
+
+//         {/* 🔹 LinkedIn & GitHub 連結 */}
+//         <Box mt={2} textAlign="center">
+//           <Typography variant="h6" gutterBottom>
+//             Connect with me:
+//           </Typography>
+//           <Typography>
+//             <a 
+//               href="https://www.linkedin.com/in/jou-yilee" 
+//               target="_blank" 
+//               rel="noopener noreferrer"
+//               style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#0077B5", textDecoration: "none" }}
+//             >
+//               LinkedIn
+//             </a>
+//           </Typography>
+//           <Typography>
+//             <a 
+//               href="https://github.com/ZoeLee23277789" 
+//               target="_blank" 
+//               rel="noopener noreferrer"
+//               style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#333", textDecoration: "none" }}
+//             >
+//               GitHub
+//             </a>
+//           </Typography>
+//         </Box>
+
+//         </Grid>
+        
+//         {/* 🔹 左邊：ABOUT ME + 技能 */}
+//         <Grid item xs={12} md={6}>
+//           <Typography variant="h3" fontWeight="bold" gutterBottom>
+//             ABOUT ME
+//           </Typography>
+//           <Typography variant="h6" color="textSecondary" paragraph>
+//             Aspiring computer scientist with a strong background in engineering and research, 
+//             aiming to leverage skills in machine learning, robotics, and software development 
+//             for innovative projects in natural language processing.
+//           </Typography>
+
+//           {/* 🔹 技能列表 */}
+//           <Box mt={3}>
+//             <Typography variant="h5" fontWeight="bold" gutterBottom>
+//               Skills
+//             </Typography>
+//             <List>
+//               <ListItem><ListItemText primary="Programming Languages: C++, Python, MATLAB" /></ListItem>
+//               <ListItem><ListItemText primary="Software: PyTorch, TensorFlow, Scikit-learn, NLTK, OpenCV" /></ListItem>
+//               <ListItem><ListItemText primary="Embedded Systems: Raspberry Pi, Arduino" /></ListItem>
+//               <ListItem><ListItemText primary="Mechanical Design: 3D Printing, SolidWorks, AutoCAD" /></ListItem>
+//               <ListItem><ListItemText primary="Soft Skills: Self-driven learning, Innovation, Problem-solving" /></ListItem>
+//             </List>
+//           </Box>
+//         </Grid>
+
+//       </Grid>
+//     </Container>
+//   );
+// }
+
+
+// // // 🔹 作品集頁面----------------------------------------------------------------------------------------------
+// // // function Portfolio() {
+// // //   return (
+// // //     <Container maxWidth="md" sx={{ textAlign: "center", mt: 8 }}>
+// // //       <Typography variant="h3" gutterBottom>
+// // //         我的作品集
+// // //       </Typography>
+// // //       <Typography variant="h6">
+// // //         這裡是你的專案展示區
+// // //       </Typography>
+// // //     </Container>
+// // //   );
+// // // }
+
+// // // 🔹 聯絡頁面------------------------------------------------------------------------------------------------
+// function Contact() {
+//   return (
+//     <Container maxWidth="md" sx={{ textAlign: "center", mt: 8 }}>
+//       <Typography variant="h3" gutterBottom>
+//         Contact Me
+//       </Typography>
+
+//       <Typography variant="h6" gutterBottom>
+//         Email: zoelee19991226@gmail.com
+//       </Typography>
+
+//       <Typography variant="h6" gutterBottom>
+//         Phone (USA): +1 408-618-9437
+//       </Typography>
+
+//       <Typography variant="h6">
+//         Phone (Taiwan): +886 978-716-605
+//       </Typography>
+//     </Container>
+//   );
+// }
+
+// // 🔹 關於頁面----------------------------------------------------------------------------------------------
+// function EducationResearch() {
+//   return (
+//     <Container maxWidth="md" sx={{ textAlign: "left", mt: 8 }}>
+      
+//       {/* 🔹 EDUCATION 區塊 */}
+//       <Typography variant="h3" fontWeight="bold" gutterBottom textAlign="center">
+//         EDUCATION
+//       </Typography>
+//       <Box sx={{ mb: 4 }}>
+         
+          
+//         <Typography variant="h6" fontWeight="bold">
+//           Master of Science in Natural Language Processing 
+//         </Typography>
+//         <Typography variant="body1">University of California, Santa Cruz (Sep 2024 - Present)</Typography>
+//         <Typography variant="body2" color="textSecondary">✓ Currently pursuing graduate studies in NLP</Typography>
+
+
+
+//         <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
+//           Bachelor of Science in Engineering Computer Science 
+//         </Typography>
+//         <Typography variant="body1">Yuan Ze University, Taoyuan, Taiwan (Jul 2019 - Jun 2024) </Typography>
+
+
+//         <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
+//           Bachelor of Science in Engineering 
+//         </Typography>
+//         <Typography variant="body1">Yuan Ze University, Taoyuan, Taiwan (Jul 2019 - Jun 2024)</Typography>
+//         <Typography variant="body2" color="textSecondary">✓ Majors: Mechanical Engineering, Chemical Engineering and Materials Science</Typography>
+
+
+//         <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
+//           Computer Science 
+//         </Typography>
+//         <Typography variant="body1">University of California, Berkeley, USA (Jun 2023 - Sep 2023)</Typography>
+//         <Typography variant="body2" color="textSecondary">✓ Semester exchange program</Typography>
+//       </Box>
+
+//       <Divider />
+
+//     {/* 🔹 RESEARCH PROJECTS 區塊 */}
+//     <Typography variant="h3" fontWeight="bold" gutterBottom textAlign="center" sx={{ mt: 4 }}>
+//       RESEARCH
+//     </Typography>
+//     <List>
+//       <ListItem>
+//         <ListItemText 
+//           primary="Feature Engineering and Model Evaluation for E-commerce "
+//           secondary={
+//             <>
+//               Advisor: Jalal Mahmud, R&D (Sep 2024 - Nov 2024)<br />
+//               ✓ Optimized classifiers for sentiment analysis and product categorization.
+//             </>
+//           }
+//         />
+//       </ListItem>
+
+//       <ListItem>
+//         <ListItemText 
+//           primary="Relation Extraction from Natural Language "
+//           secondary={
+//             <>
+//               Advisor: Amita Misra, Amazon (Sep 2024 - Nov 2024)<br />
+//               ✓ Built deep learning models for relation extraction in conversational language.
+//             </>
+//           }
+//         />
+//       </ListItem>
+
+//       <ListItem>
+//         <ListItemText 
+//           primary="Slot Tagging for Natural Language (Sep 2024 - Nov 2024)"
+//           secondary={
+//             <>
+//               Advisor: Amita Misra, Amazon <br />
+//               ✓ Developed a PyTorch-based slot tagging model for virtual assistants.
+//             </>
+//           }
+//         />
+//       </ListItem>
+
+//       <ListItem>
+//         <ListItemText 
+//           primary="Mobile Robot Path Planning using Q-Learning "
+//           secondary={
+//             <>
+//               Advisor: SYED HUMAYOON SHAH, Yuan Ze University (Feb 2023 - Sep 2024)<br />
+//               ✓ Improved static navigation using Q-Learning and object detection (OpenCV, YOLOv9).
+//             </>
+//           }
+//         />
+//       </ListItem>
+
+//       <ListItem>
+//         <ListItemText 
+//           primary="Marine Debris ImageNet Visual Recognition "
+//           secondary={
+//             <>
+//               Advisor: Ching-Lueh Chang, Yuan Ze University (Feb 2023 - Oct 2023)<br />
+//               ✓ Designed visual recognition models for marine debris identification.
+//             </>
+//           }
+//         />
+//       </ListItem>
+
+//       <ListItem>
+//         <ListItemText 
+//           primary="Deterministic Sublinear-Time Approximations for Metric 1-Median Selection "
+//           secondary={
+//             <>
+//               Advisor: Ching-Lueh Chang, Yuan Ze University (Feb 2022 - Jul 2023)<br />
+//               ✓ Developed metric approximations for scalable data analysis.
+//             </>
+//           }
+//         />
+//       </ListItem>
+//     </List>
+
+//     </Container>
+//   );
+// }
+
+
+// // 🔹 主程式
+// function App() {
+//   return (
+//     <Router>
+//     {/* 🔹 這樣確保導航列始終顯示 */}
+//       <Navbar />  
+//       <Routes>
+//         <Route path="/" element={<Navigate to="/home" />} />
+//         <Route path="/home" element={<Home />} />
+//         <Route path="/education-research" element={<EducationResearch />} />
+//         <Route path="/contact" element={<Contact />} />
+//         <Route path="*" element={<Navigate to="/home" />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+// export default App;
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import { Container, Grid, Typography, Button, Avatar, Box } from "@mui/material";
+import { keyframes } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+import profilePic from "./Photo_3.jpg"; // 確保圖片存在 src/ 或 public/ 資料夾
+
+// 🔹 定義標題變換動畫
+const fadeInUp = keyframes`
+  0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+`;
+// 🔹 定義動畫（彈跳與漸變效果）
+const mixAnimation = keyframes`
+  0% { transform: translateY(0) scale(1); opacity: 1; color: #EC7696; text-shadow: 0px 0px 15px rgba(236, 118, 150, 0.8); }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; color: #E74C7A; text-shadow: 0px 0px 25px rgba(231, 76, 122, 1); }
+  100% { transform: translateY(0) scale(1); opacity: 1; color: #EC7696; text-shadow: 0px 0px 15px rgba(236, 118, 150, 0.8); }
+`;
+// 🔹 標題選項
+const titles = [
+  "Machine Learning Engineer",
+  "AI Researcher",
+  "Natural Language Processing (NLP) Engineer",
+  "Robotics & Intelligent Systems Developer",
+];
+
+function Home() {
+  const navigate = useNavigate();
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  // 🔹 每 3 秒變換標題
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+    }, 3000); // 3秒切換一次
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <Container maxWidth="lg" sx={{ mt: 8, textAlign: "right", backgroundColor: "#Fdf9ee" }}>
+      <Grid container spacing={8} alignItems="center" justifyContent="center">
+        {/* 文字區塊 */}
+        <Grid item xs={12} md={6} textAlign="right">
+          {/* Hi! 文字動畫 */}
+          <Typography
+            variant="h1"
+            sx={{
+              fontFamily: "cursive",
+              fontWeight: "bold",
+              color: "#EC7696",
+              animation: `${mixAnimation} 2s infinite`
+            }}
+          >
+            Hi!
+          </Typography>
+           <Typography variant="h3" sx={{ fontWeight: "bold", mt: 2 }}>I'M JOU-YI LEE</Typography>
+          {/* 會變換的標題 */}
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: "bold",
+              mt: 2,
+              animation: `${fadeInUp} 1s ease-in-out`,
+              color: "#b81a35", // 深粉紅
+            }}
+          >
+            {titles[titleIndex]}
+          </Typography>
+
+          <Typography variant="h6" sx={{ color: "#555", mt: 1 }}>
+            I'm a professional engineer from Taiwan.
+          </Typography>
+
+          {/* ABOUT ME 按鈕 - **點擊跳轉** */}
+          <Button
+            variant="contained"
+            onClick={() => navigate("/about")}
+            sx={{
+              mt: 8,
+              background: "linear-gradient(45deg, #f091a0, #d1254f)",
+              boxShadow: "0px 10px 30px rgba(240, 145, 160, 0.7)",
+              color: "white",
+              borderRadius: "50px",
+              padding: "25px 25px",
+              fontSize: "30px",
+              transition: "transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.1)",
+                background: "#c2185b",
+                boxShadow: "0px 15px 30px rgba(210, 37, 79, 0.9)",
+              },
+            }}
+          >
+            ABOUT ME
+          </Button>
+        </Grid>
+
+      {/* 右半邊：人物照片，並讓邊界柔和 */}
+      <Box 
+        sx={{
+          width: "50%",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
+        <Avatar
+          src={profilePic}
+          alt="Jou-Yi Lee"
+          sx={{
+            width: "100%",
+            height: "90vh",
+            borderRadius: "0", // 不要圓角，讓圖片完整佔據右半邊
+            objectFit: "cover",
+            maskImage: "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%)", // **讓圖片邊界變模糊**
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%)", // **兼容 Webkit**
+          }}
+        />
+      </Box>
+    </Container>
+  );
+}
+
+export default Home;
