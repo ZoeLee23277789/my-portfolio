@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap');
+
+/* 以下是剛才的範例 */
+body {
+  margin: 0;
+  color: #111; /* 如果想用預設文字顏色，可移除這行 */
+}
+
+.my-name {
+  font-family: 'Sofia', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

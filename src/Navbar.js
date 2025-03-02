@@ -23,16 +23,16 @@ function Navbar() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#9F8F89", boxShadow: "none", borderBottom: "0.1px solid #ddd" }}>
-      <Toolbar sx={{ justifyContent: "space-between", height: { xs: "70px", md: "90px" } }}>
+      <Toolbar sx={{ justifyContent: "space-between", height: { xs: "70px", md: "90px" }, maxWidth: "1200px" }}>
         
         {/* 左側 LOGO，點擊可回首頁 */}
         <Typography
           variant="h4"
-          sx={{ color: "white", fontWeight: "bold", cursor: "pointer", fontFamily: "Didot" }}
+          sx={{ color: "white", cursor: "pointer",fontFamily: "'Sofia', sans-serif",textDecoration: "none" }}
           component={Link}
           to="/home"
         >
-          JOU-YI
+          JOU YI
         </Typography>
 
         {/* 桌面版選單置中，行動版隱藏 */}

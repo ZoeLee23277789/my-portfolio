@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import About from "./About";
 import Projects from "./Projects";
 import LoadingScreen from "./LoadingScreen"; // 🔹 引入 Loading 畫面
+import './styles.css';
 
 function App() {
   const [loading, setLoading] = useState(true); // 🔹 初始為 true，代表正在加載
