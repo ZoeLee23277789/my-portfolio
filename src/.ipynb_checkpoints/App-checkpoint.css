@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+body {
+  padding-top: 100px; /* 確保頁面內容向下移動 */
+}

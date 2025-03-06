@@ -15,6 +15,11 @@ body {
   animation: fadeInUp 1.5s ease forwards;
 }
 
+section {
+  padding-top: 100px; /* 確保內容不會被 Navbar 擋住 */
+}
+
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;

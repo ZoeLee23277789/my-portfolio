@@ -85,6 +85,7 @@ function Home() {
       <Container
         maxWidth="xl"
         sx={{
+          marginTop: "90px",
           display: { xs: "none", md: "block" },
           height: "100vh",
           background: "linear-gradient(to right, #fae6e6, #fce8e8)",
@@ -286,7 +287,7 @@ function Home() {
             fontWeight: "bold",
             color: "#EC7696",
             fontSize: "85px",
-            lineHeight: 1.1,
+            lineHeight: 1.05,
             animation: `${mixAnimationMobile} 2s infinite`,
           }}
         >
@@ -425,7 +426,7 @@ function Home() {
                   to right,
                   rgba(0,0,0,0)   0%,
                   rgba(0,0,0,0.05) 5%,
-                  rgba(0,0,0,0.1) 10%,
+                  rgba(0,0,0,0.08) 10%,
                   rgba(0,0,0,0.1) 15%,
                   rgba(0,0,0,1)   40%,
                   rgba(0,0,0,1)   60%,
@@ -438,7 +439,7 @@ function Home() {
                   to right,
                   rgba(0,0,0,0)   0%,
                   rgba(0,0,0,0.2) 15%,
-                  rgba(0,0,0,1)   40%,
+                  rgba(0,0,0,08)   40%,
                   rgba(0,0,0,1)   60%,
                   rgba(0,0,0,0.2) 85%,
                   rgba(0,0,0,0)   100%

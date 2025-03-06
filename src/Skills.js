@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, Typography, Box, Grid, LinearProgress, Divider } from "@mui/material";
 
 // 🔹 技能分類
@@ -14,8 +14,8 @@ const categorizedSkills = {
   "Machine Learning & AI": [
     { name: "PyTorch", value: 55 },
     { name: "OpenCV", value: 35 },
-    { name: "Selenium", value: 60 },  // ✅ 加入 Selenium
-    { name: "Scrapy", value: 40 },    // ✅ 加入 Scrapy
+    { name: "Selenium", value: 60 },
+    { name: "Scrapy", value: 40 },
   ],
   "Engineering Software": [
     { name: "SolidWorks", value: 65 },
@@ -27,9 +27,32 @@ function Skills() {
   const [progress, setProgress] = useState(
     Object.values(categorizedSkills).flat().map(() => 0)
   ); // 初始值全為 0
+  const [isVisible, setIsVisible] = useState(false);
+  const skillsRef = useRef(null);
 
+  // 🔹 監聽 `Skills` 是否進入視圖
   useEffect(() => {
-    const animateProgress = () => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 🔹 當 `Skills` 進入視圖後才開始動畫
+  useEffect(() => {
+    if (!isVisible) return; // 只有當 `Skills` 進入視圖才開始動畫
+
+    let interval = setInterval(() => {
       setProgress((prevProgress) =>
         prevProgress.map((oldValue, i) =>
           oldValue < Object.values(categorizedSkills).flat()[i].value
@@ -37,15 +60,13 @@ function Skills() {
             : Object.values(categorizedSkills).flat()[i].value
         )
       );
-    };
+    }, 50);
 
-    const timer = setInterval(animateProgress, 50); // 每 50ms 增長 2%
-
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearInterval(interval);
+  }, [isVisible]); // 只有當 `isVisible` 變為 true 時，才會觸發動畫
 
   return (
-    <Container maxWidth="md" sx={{ mt: 8, textAlign: "center" }}>
+    <Container ref={skillsRef} maxWidth="md" sx={{ mt: 8, textAlign: "center" }}>
       {/* 主標題 */}
       <Typography
         variant="h3"
@@ -60,7 +81,7 @@ function Skills() {
         sx={{
           width: "80px",
           height: "4px",
-          backgroundColor: "#8a2623", // 🔹 深粉色
+          backgroundColor: "#8a2623",
           margin: "10px auto 30px",
           borderRadius: "5px",
         }}
@@ -79,7 +100,7 @@ function Skills() {
               const globalIndex =
                 Object.values(categorizedSkills)
                   .slice(0, categoryIndex)
-                  .flat().length + index; // 計算進度條的 index
+                  .flat().length + index;
 
               return (
                 <Grid item xs={12} md={6} key={skill.name}>
@@ -93,9 +114,9 @@ function Skills() {
                     sx={{
                       height: 8,
                       borderRadius: 5,
-                      backgroundColor: "#fadce9", // 🔹 粉色背景
+                      backgroundColor: "#fadce9",
                       "& .MuiLinearProgress-bar": {
-                        backgroundColor: "#ef939e", // 🔹 深粉色進度條
+                        backgroundColor: "#ef939e",
                         transition: "width 0.5s ease-in-out",
                       },
                     }}

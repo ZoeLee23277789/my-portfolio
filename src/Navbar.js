@@ -1,34 +1,33 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Box, Button, IconButton, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-function Navbar() {
+function Navbar({ activeSection }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const navItems = [
-    { label: "Home", path: "/home" },
-    { label: "About", path: "/about" },
-    { label: "Projects", path: "/projects" },
-    { label: "Education", path: "/education-research" },
-    { label: "Contact", path: "/contact" }
+    { label: "Home", path: "home" },
+    { label: "About", path: "about" },
+    { label: "Projects", path: "projects" },
+    { label: "Education", path: "education-research" },
+    { label: "Contact", path: "contact" }
   ];
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#9F8F89", boxShadow: "none", borderBottom: "0.1px solid #ddd" }}>
+    <AppBar position="fixed" sx={{ backgroundColor: "#9F8F89", boxShadow: "none", borderBottom: "0.1px solid #ddd" }}>
       <Toolbar sx={{ justifyContent: "space-between", height: { xs: "70px", md: "90px" }, maxWidth: "1200px" }}>
-        
+
         {/* 左側 LOGO，點擊可回首頁 */}
         <Typography
           variant="h4"
-          sx={{ color: "white", cursor: "pointer",fontFamily: "'Sofia', sans-serif",textDecoration: "none" }}
+          sx={{ color: "white", cursor: "pointer", fontFamily: "'Sofia', sans-serif", textDecoration: "none" }}
           component={Link}
           to="/home"
         >
@@ -41,12 +40,12 @@ function Navbar() {
             <Button
               key={item.path}
               component={Link}
-              to={item.path}
+              to={`/${item.path}`}
               sx={{
                 color: "black",
                 mx: 1,
-                fontWeight: location.pathname === item.path ? "bold" : "normal",
-                borderBottom: location.pathname === item.path ? "5px solid #FFFFF0" : "none",
+                fontWeight: activeSection === item.path ? "bold" : "normal",
+                borderBottom: activeSection === item.path ? "5px solid #FFFFF0" : "none",
                 fontSize: { xs: "10px", md: "20px" }, // ✅ 響應式大小
                 paddingX: { xs: "8px", md: "12px" }  // ✅ 避免按鈕跑版
               }}
@@ -59,10 +58,10 @@ function Navbar() {
         {/* 右側社群媒體圖標 */}
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
           <IconButton href="https://www.linkedin.com/in/jou-yilee" target="_blank" sx={{ color: "white" }}>
-            <LinkedInIcon sx={{ fontSize: "40px" }}/>
+            <LinkedInIcon sx={{ fontSize: "40px" }} />
           </IconButton>
           <IconButton href="https://github.com/ZoeLee23277789" target="_blank" sx={{ color: "white" }}>
-            <GitHubIcon sx={{ fontSize: "40px" }}/>
+            <GitHubIcon sx={{ fontSize: "40px" }} />
           </IconButton>
         </Box>
 
@@ -80,16 +79,16 @@ function Navbar() {
                   button 
                   key={item.path} 
                   component={Link} 
-                  to={item.path} 
+                  to={`/${item.path}`} 
                   onClick={handleDrawerToggle}
                   sx={{ textAlign: "center", paddingY: 2 }} // ✅ 增加間距
                 >
                   <ListItemText 
                     primary={item.label} 
                     sx={{
-                      color: location.pathname === item.path ? "#00BFFF" : "black",
+                      color: activeSection === item.path ? "#00BFFF" : "black",
                       textAlign: "center",
-                      fontWeight: location.pathname === item.path ? "bold" : "normal"
+                      fontWeight: activeSection === item.path ? "bold" : "normal"
                     }} 
                   />
                 </ListItem>
