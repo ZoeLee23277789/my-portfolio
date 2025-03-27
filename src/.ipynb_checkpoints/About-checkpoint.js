@@ -104,7 +104,7 @@ function About() {
                   <CheckIcon sx={{ color: "#b81a35" }} /> <strong>Degree:</strong> Master of NLP UCSC
                 </Typography>
                 <Typography>
-                  <CheckIcon sx={{ color: "#b81a35" }} /> <strong>Website:</strong> www.example.com
+                  <CheckIcon sx={{ color: "#b81a35" }} /> <strong>Website:</strong> https://ZoeLee23277789.github.io/my-portfolio
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -125,7 +125,7 @@ function About() {
   <Button
     variant="contained"
     component="a"
-    href="./Resume_UCSC.pdf" // ✅ 指向你的履歷表文件
+    href="https://drive.google.com/uc?export=download&id=1b1d1sYe6uYdQzI-V-jh9RM8R7ggJxTJt"
     download="Jou-Yi_Lee_Resume.pdf" // ✅ 下載時的文件名稱
     sx={{
       background: "linear-gradient(45deg, #f091a0, #d1254f)",
@@ -151,7 +151,12 @@ function About() {
   {/* 🔹 跳轉到 Projects 按鈕 */}
   <Button
     variant="contained"
-    onClick={() => navigate("/projects")} // ✅ 跳轉到 Projects 頁面
+    onClick={() => {
+    const el = document.getElementById("projects-top");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
     sx={{
       background: "linear-gradient(45deg, #6a82fb, #fc5c7d)",
       boxShadow: "0px 10px 30px rgba(106, 130, 251, 0.7)",
@@ -194,6 +199,7 @@ function About() {
               alt="Jou-Yi Lee"
               onClick={handleLinkedInClick} // ✅ 點擊時開啟 LinkedIn
               sx={{
+                display: "none",
                 width: "100%", // ✅ 確保填滿 Grid
                 height: "90vh",
                 maxWidth: "450px",

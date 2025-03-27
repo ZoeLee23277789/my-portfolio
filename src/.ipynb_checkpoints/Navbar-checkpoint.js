@@ -46,8 +46,8 @@ function Navbar({ activeSection }) {
                 mx: 1,
                 fontWeight: activeSection === item.path ? "bold" : "normal",
                 borderBottom: activeSection === item.path ? "5px solid #FFFFF0" : "none",
-                fontSize: { xs: "10px", md: "20px" }, // ✅ 響應式大小
-                paddingX: { xs: "8px", md: "12px" }  // ✅ 避免按鈕跑版
+                fontSize: { xs: "10px", md: "20px" },
+                paddingX: { xs: "8px", md: "12px" }
               }}
             >
               {item.label}
@@ -72,7 +72,7 @@ function Navbar({ activeSection }) {
 
         {/* 行動版側邊選單 */}
         <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
-          <Box sx={{ width: 200, backgroundColor: "white", height: "100%" }}>
+          <Box sx={{ width: 200, backgroundColor: "white", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             <List>
               {navItems.map((item) => (
                 <ListItem 
@@ -81,7 +81,7 @@ function Navbar({ activeSection }) {
                   component={Link} 
                   to={`/${item.path}`} 
                   onClick={handleDrawerToggle}
-                  sx={{ textAlign: "center", paddingY: 2 }} // ✅ 增加間距
+                  sx={{ textAlign: "center", paddingY: 2 }}
                 >
                   <ListItemText 
                     primary={item.label} 
@@ -94,6 +94,16 @@ function Navbar({ activeSection }) {
                 </ListItem>
               ))}
             </List>
+
+            {/* 🔹 社群圖示區塊 */}
+            <Box sx={{ display: "flex", justifyContent: "center", pb: 3, gap: 2 }}>
+              <IconButton href="https://www.linkedin.com/in/jou-yilee" target="_blank" sx={{ color: "#0e76a8" }}>
+                <LinkedInIcon />
+              </IconButton>
+              <IconButton href="https://github.com/ZoeLee23277789" target="_blank" sx={{ color: "black" }}>
+                <GitHubIcon />
+              </IconButton>
+            </Box>
           </Box>
         </Drawer>
       </Toolbar>

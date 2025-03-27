@@ -85,7 +85,7 @@ function Home() {
       <Container
         maxWidth="xl"
         sx={{
-          marginTop: "90px",
+          marginTop: { xs: "6px", md: "120px" },
           display: { xs: "none", md: "block" },
           height: "100vh",
           background: "linear-gradient(to right, #fae6e6, #fce8e8)",
@@ -269,6 +269,7 @@ function Home() {
 <Container
   maxWidth="xl"
   sx={{
+    marginTop: { xs: "50px", md: "120px" },
     display: { xs: "block", md: "none" },
     background: "linear-gradient(to right, #fae6e6, #fce8e8)",
     padding: "0 5%",
@@ -342,7 +343,7 @@ function Home() {
         >
           <Button
             variant="contained"
-            onClick={() => navigate("/hire")}
+            onClick={() => window.scrollToSection("contact")}
             sx={{
               background: "linear-gradient(45deg, #f6a5c0, #d1254f)",
               boxShadow: "0px 10px 30px rgba(246, 165, 192, 0.7)",
@@ -362,7 +363,7 @@ function Home() {
           </Button>
           <Button
             variant="contained"
-            onClick={() => navigate("/about")}
+            onClick={() => window.scrollToSection("about")}
             sx={{
               background: "linear-gradient(45deg, #f091a0, #d1254f)",
               boxShadow: "0px 10px 30px rgba(240, 145, 160, 0.7)",
