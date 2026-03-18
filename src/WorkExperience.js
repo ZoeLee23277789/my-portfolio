@@ -37,7 +37,7 @@ const experiences = [
     singleActionLink:
       "https://drive.google.com/file/d/16EUr-58UBrMPoHlxXqFoj7t2GH1Jr2O0/view?usp=sharing",
     dynamicPlanningLink:
-      "https://docs.google.com/presentation/d/19YzwGWdJeT6rA_tXMYWo2gY77fKMa8Zn94NWA3WT8uo/edit?slide=id.g399ffef812f_0_6#slide=id.g399ffef812f_0_6",
+      "https://drive.google.com/file/d/1AbQ79UWix4BgAcAJ0SZAwAMujhH52vJI/view?resourcekey",
     points: [
       "Designed an LLM-driven GUI agent for multi-step creative workflows in Adobe Express.",
       "Built custom tool abstractions for canvas, Shadow DOM, and structured UI interaction.",
