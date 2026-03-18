@@ -32,7 +32,7 @@ function App() {
     () => [
       "San Jose, CA",
       "Dual Master’s",
-      "Adobe GUI Agent",
+      "LLM GUI Agent",
       "TSMC DevOps",
       "IEEE ARIS 2024",
     ],

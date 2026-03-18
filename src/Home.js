@@ -14,7 +14,7 @@ function Home() {
   const facts = useMemo(
     () => [
       "Dual Master’s",
-      "Adobe GUI Agent",
+      "LLM GUI Agent",
       "TSMC DevOps",
       "IEEE ARIS 2024",
     ],
