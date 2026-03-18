@@ -85,8 +85,8 @@ function EducationCard({ e }) {
 export default function EducationResearch() {
   return (
     <section id="education" className="section education-section">
-      <div className="section-kicker reveal">Background</div>
-      <h2 className="section-title reveal">Education</h2>
+      {/* <div className="section-kicker reveal">Background</div> */}
+      <h2 className="section-title reveal">Background & Education</h2>
       <p className="section-copy reveal education-intro">
         My academic background combines robotics, NLP, and systems building,
         with a strong focus on turning technical ideas into practical,
