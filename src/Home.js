@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import profilePic from "./Photo_3.jpg";
 
 const roles = [
-  "AI Systems Engineer",
+  "Software Engineer",
+  "AI Engineer",
   "DevOps & Full-Stack Engineer",
   "LLM-Powered GUI Agent Builder",
   "Machine Learning Engineer",
