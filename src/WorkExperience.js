@@ -34,6 +34,10 @@ const experiences = [
     type: "Capstone / Applied AI",
     logo: `${process.env.PUBLIC_URL}/logos/adobe.png`,
     poster: `${process.env.PUBLIC_URL}/posters/adobe-poster.jpg`,
+    singleActionLink:
+      "https://drive.google.com/file/d/16EUr-58UBrMPoHlxXqFoj7t2GH1Jr2O0/view?usp=sharing",
+    dynamicPlanningLink:
+      "https://docs.google.com/presentation/d/19YzwGWdJeT6rA_tXMYWo2gY77fKMa8Zn94NWA3WT8uo/edit?slide=id.g399ffef812f_0_6#slide=id.g399ffef812f_0_6",
     points: [
       "Designed an LLM-driven GUI agent for multi-step creative workflows in Adobe Express.",
       "Built custom tool abstractions for canvas, Shadow DOM, and structured UI interaction.",
@@ -78,13 +82,15 @@ export default function WorkExperience() {
             color: "var(--muted)",
           }}
         >
-          Industry and applied AI experience across production systems, developer
-          tooling, and interface automation.
+          Industry and applied AI experience across production systems,
+          developer tooling, and interface automation.
         </Typography>
 
         <Grid container spacing={2.2}>
           {experiences.map((exp, index) => {
             const clickable = Boolean(exp.poster);
+            const hasSingleActionLink = Boolean(exp.singleActionLink);
+            const hasDynamicPlanningLink = Boolean(exp.dynamicPlanningLink);
 
             return (
               <Grid item xs={12} key={index}>
@@ -249,7 +255,7 @@ export default function WorkExperience() {
                     spacing={1}
                     useFlexGap
                     flexWrap="wrap"
-                    sx={{ mb: clickable ? 1.6 : 0 }}
+                    sx={{ mb: 1.2 }}
                   >
                     {exp.tags.map((tag, i) => (
                       <Chip
@@ -265,22 +271,75 @@ export default function WorkExperience() {
                     ))}
                   </Stack>
 
-                  {clickable && (
-                    <Button
-                      variant="outlined"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOpenPoster(exp);
-                      }}
-                      sx={{
-                        mt: 0.6,
-                        fontWeight: 700,
-                        borderRadius: "999px",
-                        textTransform: "none",
-                      }}
+                  {(clickable ||
+                    hasSingleActionLink ||
+                    hasDynamicPlanningLink) && (
+                    <Stack
+                      direction="row"
+                      spacing={1.2}
+                      useFlexGap
+                      flexWrap="wrap"
+                      sx={{ mt: 0.6 }}
                     >
-                      View Adobe Poster
-                    </Button>
+                      {clickable && (
+                        <Button
+                          variant="outlined"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenPoster(exp);
+                          }}
+                          sx={{
+                            fontWeight: 700,
+                            borderRadius: "999px",
+                            textTransform: "none",
+                          }}
+                        >
+                          View Adobe Poster
+                        </Button>
+                      )}
+
+                      {hasSingleActionLink && (
+                        <Button
+                          variant="contained"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              exp.singleActionLink,
+                              "_blank",
+                              "noopener,noreferrer"
+                            );
+                          }}
+                          sx={{
+                            fontWeight: 700,
+                            borderRadius: "999px",
+                            textTransform: "none",
+                          }}
+                        >
+                          Single Action
+                        </Button>
+                      )}
+
+                      {hasDynamicPlanningLink && (
+                        <Button
+                          variant="contained"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              exp.dynamicPlanningLink,
+                              "_blank",
+                              "noopener,noreferrer"
+                            );
+                          }}
+                          sx={{
+                            fontWeight: 700,
+                            borderRadius: "999px",
+                            textTransform: "none",
+                          }}
+                        >
+                          Dynamic Planning
+                        </Button>
+                      )}
+                    </Stack>
                   )}
                 </Box>
               </Grid>
