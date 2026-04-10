@@ -8,6 +8,7 @@ import Home from "./Home";
 import Projects from "./Projects";
 import Navbar from "./Navbar";
 import RobotBuddy from "./RobotBuddy";
+import PublishedResearch from "./PublishedResearch";
 
 function LoadingScreen({ onFinish }) {
   useEffect(() => {
@@ -193,38 +194,7 @@ function App() {
 
         <WorkExperience />
         <Projects />
-
-        <section id="research" className="section">
-          <h2 className="section-title reveal">Published Research</h2>
-          <div className="research-card reveal">
-            <h3>Mobile Robot Path Planning</h3>
-            <p className="research-subtitle">
-              Practical Implementation of Q-Learning and Object Detection for
-              Mobile Robot Path Planning
-            </p>
-            <ul className="project-details">
-              <li>
-                Combined Q-Learning with YOLOv9 for navigation in static
-                environments.
-              </li>
-              <li>Published at IEEE ARIS 2024.</li>
-              <li>
-                Connected real-time perception with decision-making for robotics
-                applications.
-              </li>
-            </ul>
-            <a
-              className="read-paper-btn magnetic"
-              href="https://ieeexplore.ieee.org/document/10679961"
-              target="_blank"
-              rel="noreferrer"
-              onClick={addRipple}
-            >
-              Read Paper
-            </a>
-          </div>
-        </section>
-
+        <PublishedResearch addRipple={addRipple} />
         <EducationResearch />
 
         <section id="skills" className="section">
@@ -274,3 +244,41 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+{/* <section id="research" className="section"> */}
+{/* <h2 className="section-title reveal">Published Research</h2>
+<div className="research-card reveal">
+  <h3>Mobile Robot Path Planning</h3>
+  <p className="research-subtitle">
+    Practical Implementation of Q-Learning and Object Detection for
+    Mobile Robot Path Planning
+  </p>
+  <ul className="project-details">
+    <li>
+      Combined Q-Learning with YOLOv9 for navigation in static
+      environments.
+    </li>
+    <li>Published at IEEE ARIS 2024.</li>
+    <li>
+      Connected real-time perception with decision-making for robotics
+      applications.
+    </li>
+  </ul>
+  <a
+    className="read-paper-btn magnetic"
+    href="https://ieeexplore.ieee.org/document/10679961"
+    target="_blank"
+    rel="noreferrer"
+    onClick={addRipple}
+  >
+    Read Paper
+  </a>
+</div>
+</section> */}

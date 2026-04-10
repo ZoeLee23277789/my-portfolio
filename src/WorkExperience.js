@@ -20,12 +20,15 @@ const experiences = [
     period: "Jun 2025 – Sep 2025",
     type: "Industry Experience",
     logo: `${process.env.PUBLIC_URL}/logos/tsmc.png`,
+    poster: `${process.env.PUBLIC_URL}/posters/tsmc-dashboard.png`,
     points: [
       "Built equipment status tracking features with React, JavaScript, and Python services.",
       "Containerized services with Docker and supported CI/CD-based development workflows.",
       "Collaborated across teams on debugging, requirement updates, and release integration.",
+      "Designed an equipment data management interface with editable tables, filtering, and update submission flow.",
+      "Integrated monitoring dashboards to visualize real-time equipment metrics and support operational tracking.",
     ],
-    tags: ["React", "Docker", "CI/CD", "Python"],
+    tags: ["React", "Docker", "CI/CD", "Python", "Monitoring", "MUI"],
   },
   {
     role: "Capstone Collaboration",
@@ -55,7 +58,13 @@ export default function WorkExperience() {
   const handleOpenPoster = (exp) => {
     if (!exp.poster) return;
     setSelectedPoster(exp.poster);
-    setSelectedTitle(`${exp.company} Poster`);
+
+    if (exp.company === "TSMC") {
+      setSelectedTitle("TSMC System Illustration");
+    } else {
+      setSelectedTitle(`${exp.company} Preview`);
+    }
+
     setOpenPoster(true);
   };
 
@@ -218,7 +227,9 @@ export default function WorkExperience() {
                             color: "#d32f2f",
                           }}
                         >
-                          Click to view poster
+                          {exp.company === "TSMC"
+                            ? "Click to view system illustration"
+                            : "Click to view preview"}
                         </Typography>
                       )}
                     </Box>
@@ -294,7 +305,9 @@ export default function WorkExperience() {
                             textTransform: "none",
                           }}
                         >
-                          View Adobe Poster
+                          {exp.company === "TSMC"
+                            ? "View System Illustration"
+                            : "View Preview"}
                         </Button>
                       )}
 
@@ -374,17 +387,34 @@ export default function WorkExperience() {
 
         <DialogContent sx={{ pt: 1 }}>
           {selectedPoster && (
-            <Box
-              component="img"
-              src={selectedPoster}
-              alt={selectedTitle}
-              sx={{
-                width: "100%",
-                height: "auto",
-                borderRadius: 2,
-                display: "block",
-              }}
-            />
+            <>
+              <Box
+                component="img"
+                src={selectedPoster}
+                alt={selectedTitle}
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 2,
+                  display: "block",
+                }}
+              />
+
+              {selectedTitle === "TSMC System Illustration" && (
+                <Typography
+                  sx={{
+                    mt: 1.5,
+                    fontSize: "0.95rem",
+                    color: "var(--muted)",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  Note: This image is a representative system illustration for
+                  demonstration purposes only and does not disclose confidential
+                  internal details.
+                </Typography>
+              )}
+            </>
           )}
         </DialogContent>
       </Dialog>
