@@ -63,6 +63,28 @@ const projects = [
     tech: ["React", "Node.js", "Docker", "Azure CI/CD"],
     meta: "TSMC • Jun 2025 – Sep 2025",
   },
+  {
+    title: "Marine Waste Image Recognition",
+    impact:
+      "Participated in a marine waste image recognition project to detect and classify coastal litter using computer vision techniques.",
+    details: [
+      "Worked on image-based recognition of marine debris across multiple waste categories in real-world beach environments.",
+      "Reviewed detection outputs and evaluation results, including confidence-based recall behavior across categories.",
+      "Gained hands-on experience applying computer vision to an environmental monitoring use case.",
+    ],
+    tech: [
+      "Computer Vision",
+      "Object Detection",
+      "Deep Learning",
+      "Image Recognition",
+    ],
+    meta: "National Academy of Marine Research • 2023",
+    images: [
+      `${process.env.PUBLIC_URL}/posters/marine-waste-1.png`,
+      `${process.env.PUBLIC_URL}/posters/Sea-Waste-3.png`,
+      `${process.env.PUBLIC_URL}/posters/marine-waste-2.png`,
+    ],
+  },
 ];
 
 function Projects() {
@@ -101,6 +123,26 @@ function Projects() {
     setTimeout(() => circle.remove(), 650);
   };
 
+  const getPreviewButtonText = (project) => {
+    if (project.title === "DevOps Data Simulation Platform") {
+      return "View System Illustration";
+    }
+    if (project.title === "Marine Waste Image Recognition") {
+      return "View Results";
+    }
+    return "View Preview";
+  };
+
+  const getModalTitle = () => {
+    if (selectedTitle === "DevOps Data Simulation Platform") {
+      return "DevOps Data Simulation Platform — System Illustration";
+    }
+    if (selectedTitle === "Marine Waste Image Recognition") {
+      return "Marine Waste Image Recognition — Detection Results";
+    }
+    return selectedTitle;
+  };
+
   return (
     <>
       <section id="projects" className="section">
@@ -121,8 +163,6 @@ function Projects() {
         <div className="projects-grid">
           {visibleProjects.map((project) => {
             const hasImages = project.images && project.images.length > 0;
-            const isDevOps =
-              project.title === "DevOps Data Simulation Platform";
 
             return (
               <article
@@ -154,7 +194,7 @@ function Projects() {
                     className="project-toggle-btn"
                     onClick={() => handleOpenImages(project)}
                   >
-                    {isDevOps ? "View System Illustration" : "View Preview"}
+                    {getPreviewButtonText(project)}
                   </button>
                 )}
 
@@ -220,9 +260,7 @@ function Projects() {
                   color: "#111827",
                 }}
               >
-                {selectedTitle === "DevOps Data Simulation Platform"
-                  ? "DevOps Data Simulation Platform — System Illustration"
-                  : selectedTitle}
+                {getModalTitle()}
               </h3>
 
               <button
@@ -248,55 +286,69 @@ function Projects() {
                 alignItems: "start",
               }}
             >
-            {selectedImages.map((img, index) => {
-              const isSingleImage = selectedImages.length === 1;
+              {selectedImages.map((img, index) => {
+                const isSingleImage = selectedImages.length === 1;
 
-              return (
-                <div
-                  key={index}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt={`${selectedTitle} ${index + 1}`}
+                return (
+                  <div
+                    key={index}
                     style={{
-                      width: "100%",
-                      maxWidth: isSingleImage ? "850px" : "500px",
-                      maxHeight: isSingleImage ? "650px" : "920px",
-                      objectFit: "contain",
-                      borderRadius: "14px",
-                      display: "block",
-                      margin: "0 auto",
-                      background: "#f8fafc",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
-                  />
-                </div>
-              );
-            })}
-                        </div>
+                  >
+                    <img
+                      src={img}
+                      alt={`${selectedTitle} ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        maxWidth: isSingleImage ? "850px" : "500px",
+                        maxHeight: isSingleImage ? "650px" : "920px",
+                        objectFit: "contain",
+                        borderRadius: "14px",
+                        display: "block",
+                        margin: "0 auto",
+                        background: "#f8fafc",
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
 
-                        {selectedTitle === "DevOps Data Simulation Platform" && (
-                          <p
-                            style={{
-                              marginTop: "16px",
-                              fontSize: "0.95rem",
-                              color: "#6b7280",
-                              lineHeight: 1.7,
-                            }}
-                          >
-                            Note: This image is a representative system illustration for
-                            demonstration purposes only and does not disclose confidential
-                            internal details.
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </>
-              );
-            }
+            {selectedTitle === "DevOps Data Simulation Platform" && (
+              <p
+                style={{
+                  marginTop: "16px",
+                  fontSize: "0.95rem",
+                  color: "#6b7280",
+                  lineHeight: 1.7,
+                }}
+              >
+                Note: This image is a representative system illustration for
+                demonstration purposes only and does not disclose confidential
+                internal details.
+              </p>
+            )}
+
+            {selectedTitle === "Marine Waste Image Recognition" && (
+              <p
+                style={{
+                  marginTop: "16px",
+                  fontSize: "0.95rem",
+                  color: "#6b7280",
+                  lineHeight: 1.7,
+                }}
+              >
+                Note: These images show sample detection outputs and evaluation
+                results from the marine waste image recognition project.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default Projects;
