@@ -19,19 +19,26 @@ const projects = [
     images: [agentTree, agentArchitecture],
   },
   {
-    title: "DevOps Data Simulation Platform",
+    title: "Wireless Diagnostics Assistant",
     impact:
-      "Built a containerized monitoring and automation platform for simulated equipment data pipelines and dashboard-based observability.",
+      "Built an FAE-style wireless troubleshooting dashboard that collects network diagnostic data, detects abnormal connectivity behavior, and generates both engineering notes and customer-friendly explanations.",
     details: [
-      "Integrated simulated sensor data, backend APIs, and dashboard visualization into a unified development platform.",
-      "Orchestrated services with Docker Compose and organized workflow components for automation and reporting.",
-      "Included observability and pipeline infrastructure with Prometheus configuration, Airflow components, and a dashboard frontend.",
+      "Collected real network diagnostics such as download/upload speed, latency, jitter, packet loss, Wi-Fi band, signal strength, RSSI, ping, DNS, and traceroute results.",
+      "Designed a React dashboard with performance metrics, selected measurement details, FAE decision output, evidence, logs, and AI-generated explanations for both engineers and customers.",
     ],
-    tech: ["Python", "Airflow", "Prometheus", "Dashboard", "Docker"],
-    meta: "DevOps / Monitoring Platform • 2025",
-    link: "https://github.com/ZoeLee23277789/DevOps-data-simulation-platform",
-    linkLabel: "View Project",
-    images: [`${process.env.PUBLIC_URL}/posters/Dashboard.png`],
+    tech: [
+      "React",
+      "Flask",
+      "MongoDB",
+      "Python",
+      "Network Diagnostics",
+      "AI Explanation",
+    ],
+    meta: "FAE / Wireless Diagnostics • 2026",
+    images: [
+      `${process.env.PUBLIC_URL}/posters/wnc-fae-overview.png`,
+      `${process.env.PUBLIC_URL}/posters/wnc-fae-ai-notes.png`,
+    ],
   },
   {
     title: "EA-MT: Entity-Aware Machine Translation",
@@ -50,6 +57,21 @@ const projects = [
       `${process.env.PUBLIC_URL}/posters/EA-MT1.png`,
       `${process.env.PUBLIC_URL}/posters/EA-MT2.png`,
     ],
+  },
+  {
+    title: "DevOps Data Simulation Platform",
+    impact:
+      "Built a containerized monitoring and automation platform for simulated equipment data pipelines and dashboard-based observability.",
+    details: [
+      "Integrated simulated sensor data, backend APIs, and dashboard visualization into a unified development platform.",
+      "Orchestrated services with Docker Compose and organized workflow components for automation and reporting.",
+      "Included observability and pipeline infrastructure with Prometheus configuration, Airflow components, and a dashboard frontend.",
+    ],
+    tech: ["Python", "Airflow", "Prometheus", "Dashboard", "Docker"],
+    meta: "DevOps / Monitoring Platform • 2025",
+    link: "https://github.com/ZoeLee23277789/DevOps-data-simulation-platform",
+    linkLabel: "View Project",
+    images: [`${process.env.PUBLIC_URL}/posters/Dashboard.png`],
   },
   {
     title: "Parts Tracking System (PTS)",
@@ -136,6 +158,9 @@ function Projects() {
   const getModalTitle = () => {
     if (selectedTitle === "DevOps Data Simulation Platform") {
       return "DevOps Data Simulation Platform — System Illustration";
+    }
+    if (selectedTitle === "Wireless Diagnostics Assistant") {
+      return "Wireless Diagnostics Assistant — FAE Dashboard";
     }
     if (selectedTitle === "Marine Waste Image Recognition") {
       return "Marine Waste Image Recognition — Detection Results";
@@ -330,7 +355,20 @@ function Projects() {
                 internal details.
               </p>
             )}
-
+            {selectedTitle === "Wireless Diagnostics Assistant" && (
+              <p
+                style={{
+                  marginTop: "16px",
+                  fontSize: "0.95rem",
+                  color: "#6b7280",
+                  lineHeight: 1.7,
+                }}
+              >
+                Note: This dashboard was built as a self-initiated FAE preparation project
+                to demonstrate network troubleshooting, baseline comparison, root-cause
+                diagnosis, and AI-assisted customer/engineering communication.
+              </p>
+            )}
             {selectedTitle === "Marine Waste Image Recognition" && (
               <p
                 style={{
