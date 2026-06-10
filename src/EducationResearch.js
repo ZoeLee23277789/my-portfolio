@@ -2,13 +2,13 @@ import React from "react";
 
 const education = [
   {
-    degree: "M.A.S. in Engineering",
+    degree: "Master of Advanced Study in Engineering",
     school: "University of California, Berkeley, Berkeley, CA",
     time: "Aug 2025 – May 2027",
     status: "Expected May 2027",
     logo: `${process.env.PUBLIC_URL}/logos/berkeley.png`,
-    note: "Graduate study in engineering with focus on advanced systems, applied technology, and interdisciplinary problem solving.",
-    tags: ["Engineering", "Systems", "Applied Technology"],
+    note: "Graduate study in engineering through the Interim AI/ML, Robotics, and Controls (AIRC) area.",
+    tags: ["AI/ML", "Robotics", "Controls"],
   },
   {
     degree: "M.S. in Natural Language Processing",

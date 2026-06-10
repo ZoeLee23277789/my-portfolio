@@ -17,29 +17,14 @@ const projects = [
     link: "https://github.com/ZoeLee23277789/Autonomous-Recursive-Multi-Agent-System",
     linkLabel: "View Project",
     images: [agentTree, agentArchitecture],
-  },
-  {
-    title: "Wireless Diagnostics Assistant",
-    impact:
-      "Built an FAE-style wireless troubleshooting dashboard that collects network diagnostic data, detects abnormal connectivity behavior, and generates both engineering notes and customer-friendly explanations.",
-    details: [
-      "Collected real network diagnostics such as download/upload speed, latency, jitter, packet loss, Wi-Fi band, signal strength, RSSI, ping, DNS, and traceroute results.",
-      "Designed a React dashboard with performance metrics, selected measurement details, FAE decision output, evidence, logs, and AI-generated explanations for both engineers and customers.",
-    ],
-    tech: [
-      "React",
-      "Flask",
-      "MongoDB",
-      "Python",
-      "Network Diagnostics",
-      "AI Explanation",
-    ],
-    meta: "FAE / Wireless Diagnostics • 2026",
-    images: [
-      `${process.env.PUBLIC_URL}/posters/wnc-fae-overview.png`,
-      `${process.env.PUBLIC_URL}/posters/wnc-fae-ai-notes.png`,
+    resultImages: [
+      `${process.env.PUBLIC_URL}/projects/Result2.png`,
+      `${process.env.PUBLIC_URL}/projects/Result1.png`,
+      `${process.env.PUBLIC_URL}/projects/Result4.png`,
+      `${process.env.PUBLIC_URL}/projects/Result3.png`,
     ],
   },
+
   {
     title: "EA-MT: Entity-Aware Machine Translation",
     impact:
@@ -72,6 +57,31 @@ const projects = [
     link: "https://github.com/ZoeLee23277789/DevOps-data-simulation-platform",
     linkLabel: "View Project",
     images: [`${process.env.PUBLIC_URL}/posters/Dashboard.png`],
+    architectureImages: [
+      `${process.env.PUBLIC_URL}/projects/System%20Architecture.png`,
+    ],
+  },
+    {
+    title: "Wireless Diagnostics Assistant",
+    impact:
+      "Built an FAE-style wireless troubleshooting dashboard that collects network diagnostic data, detects abnormal connectivity behavior, and generates both engineering notes and customer-friendly explanations.",
+    details: [
+      "Collected real network diagnostics such as download/upload speed, latency, jitter, packet loss, Wi-Fi band, signal strength, RSSI, ping, DNS, and traceroute results.",
+      "Designed a React dashboard with performance metrics, selected measurement details, FAE decision output, evidence, logs, and AI-generated explanations for both engineers and customers.",
+    ],
+    tech: [
+      "React",
+      "Flask",
+      "MongoDB",
+      "Python",
+      "Network Diagnostics",
+      "AI Explanation",
+    ],
+    meta: "FAE / Wireless Diagnostics • 2026",
+    images: [
+      `${process.env.PUBLIC_URL}/posters/wnc-fae-overview.png`,
+      `${process.env.PUBLIC_URL}/posters/wnc-fae-ai-notes.png`,
+    ],
   },
   {
     title: "Parts Tracking System (PTS)",
@@ -114,6 +124,8 @@ function Projects() {
   const [openImageModal, setOpenImageModal] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedTitle, setSelectedTitle] = useState("");
+  const isResultModal =
+    selectedTitle === "Autonomous Recursive Multi-Agent System Results";
 
   const visibleProjects = showAll ? projects : projects.slice(0, 3);
 
@@ -121,6 +133,22 @@ function Projects() {
     if (!project.images || project.images.length === 0) return;
     setSelectedImages(project.images);
     setSelectedTitle(project.title);
+    setOpenImageModal(true);
+  };
+
+  const handleOpenResultImages = (project) => {
+    if (!project.resultImages || project.resultImages.length === 0) return;
+    setSelectedImages(project.resultImages);
+    setSelectedTitle(`${project.title} Results`);
+    setOpenImageModal(true);
+  };
+
+  const handleOpenArchitectureImages = (project) => {
+    if (!project.architectureImages || project.architectureImages.length === 0) {
+      return;
+    }
+    setSelectedImages(project.architectureImages);
+    setSelectedTitle(`${project.title} System Architecture`);
     setOpenImageModal(true);
   };
 
@@ -159,11 +187,17 @@ function Projects() {
     if (selectedTitle === "DevOps Data Simulation Platform") {
       return "DevOps Data Simulation Platform — System Illustration";
     }
+    if (selectedTitle === "DevOps Data Simulation Platform System Architecture") {
+      return "DevOps Data Simulation Platform — System Architecture";
+    }
     if (selectedTitle === "Wireless Diagnostics Assistant") {
       return "Wireless Diagnostics Assistant — FAE Dashboard";
     }
     if (selectedTitle === "Marine Waste Image Recognition") {
       return "Marine Waste Image Recognition — Detection Results";
+    }
+    if (selectedTitle === "Autonomous Recursive Multi-Agent System Results") {
+      return "Autonomous Recursive Multi-Agent System — Results";
     }
     return selectedTitle;
   };
@@ -188,6 +222,11 @@ function Projects() {
         <div className="projects-grid">
           {visibleProjects.map((project) => {
             const hasImages = project.images && project.images.length > 0;
+            const hasResultImages =
+              project.resultImages && project.resultImages.length > 0;
+            const hasArchitectureImages =
+              project.architectureImages &&
+              project.architectureImages.length > 0;
 
             return (
               <article
@@ -213,14 +252,38 @@ function Projects() {
                   ))}
                 </div>
 
-                {hasImages && (
-                  <button
-                    type="button"
-                    className="project-toggle-btn"
-                    onClick={() => handleOpenImages(project)}
-                  >
-                    {getPreviewButtonText(project)}
-                  </button>
+                {(hasImages || hasResultImages || hasArchitectureImages) && (
+                  <div className="project-action-row">
+                    {hasImages && (
+                      <button
+                        type="button"
+                        className="project-toggle-btn"
+                        onClick={() => handleOpenImages(project)}
+                      >
+                        {getPreviewButtonText(project)}
+                      </button>
+                    )}
+
+                    {hasArchitectureImages && (
+                      <button
+                        type="button"
+                        className="project-toggle-btn"
+                        onClick={() => handleOpenArchitectureImages(project)}
+                      >
+                        System Architecture
+                      </button>
+                    )}
+
+                    {hasResultImages && (
+                      <button
+                        type="button"
+                        className="project-toggle-btn"
+                        onClick={() => handleOpenResultImages(project)}
+                      >
+                        Result
+                      </button>
+                    )}
+                  </div>
                 )}
 
                 <div className="project-meta">{project.meta}</div>
@@ -304,10 +367,13 @@ function Projects() {
             </div>
 
             <div
+              className={isResultModal ? "project-result-modal" : ""}
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                gap: "16px",
+                gridTemplateColumns: isResultModal
+                  ? "repeat(2, minmax(0, 1fr))"
+                  : "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: isResultModal ? "18px" : "16px",
                 alignItems: "start",
               }}
             >
@@ -317,23 +383,38 @@ function Projects() {
                 return (
                   <div
                     key={index}
+                    className={
+                      isResultModal
+                        ? "project-result-image-card"
+                        : undefined
+                    }
                     style={{
                       display: "flex",
                       justifyContent: "center",
+                      alignItems: isResultModal ? "center" : undefined,
                     }}
                   >
                     <img
                       src={img}
                       alt={`${selectedTitle} ${index + 1}`}
+                      className={isResultModal ? "project-result-image" : ""}
                       style={{
                         width: "100%",
-                        maxWidth: isSingleImage ? "850px" : "500px",
-                        maxHeight: isSingleImage ? "650px" : "920px",
+                        maxWidth: isResultModal
+                          ? "100%"
+                          : isSingleImage
+                          ? "850px"
+                          : "500px",
+                        maxHeight: isResultModal
+                          ? "100%"
+                          : isSingleImage
+                          ? "650px"
+                          : "920px",
                         objectFit: "contain",
-                        borderRadius: "14px",
+                        borderRadius: isResultModal ? "10px" : "14px",
                         display: "block",
                         margin: "0 auto",
-                        background: "#f8fafc",
+                        background: isResultModal ? "transparent" : "#f8fafc",
                       }}
                     />
                   </div>

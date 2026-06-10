@@ -37,6 +37,7 @@ const experiences = [
     type: "Capstone / Applied AI",
     logo: `${process.env.PUBLIC_URL}/logos/adobe.png`,
     poster: `${process.env.PUBLIC_URL}/posters/adobe-poster.jpg`,
+    guiAgentPoster: `${process.env.PUBLIC_URL}/posters/GUI%20Agent.png`,
     singleActionLink:
       "https://drive.google.com/file/d/16EUr-58UBrMPoHlxXqFoj7t2GH1Jr2O0/view?usp=sharing",
     dynamicPlanningLink:
@@ -46,7 +47,7 @@ const experiences = [
       "Built custom tool abstractions for canvas, Shadow DOM, and structured UI interaction.",
       "Improved task reliability with retrieval, planning, and iterative execution logic.",
     ],
-    tags: ["LLM", "GUI Agent", "RAG", "Automation"],
+    tags: ["LLM", "GUI Agent", "RAG", "Automation","ReAct", "Prompt Engineering"],
   },
 ];
 
@@ -65,6 +66,13 @@ export default function WorkExperience() {
       setSelectedTitle(`${exp.company} Preview`);
     }
 
+    setOpenPoster(true);
+  };
+
+  const handleOpenGuiAgentPoster = (exp) => {
+    if (!exp.guiAgentPoster) return;
+    setSelectedPoster(exp.guiAgentPoster);
+    setSelectedTitle("GUI Agent");
     setOpenPoster(true);
   };
 
@@ -98,6 +106,7 @@ export default function WorkExperience() {
         <Grid container spacing={2.2}>
           {experiences.map((exp, index) => {
             const clickable = Boolean(exp.poster);
+            const hasGuiAgentPoster = Boolean(exp.guiAgentPoster);
             const hasSingleActionLink = Boolean(exp.singleActionLink);
             const hasDynamicPlanningLink = Boolean(exp.dynamicPlanningLink);
 
@@ -283,6 +292,7 @@ export default function WorkExperience() {
                   </Stack>
 
                   {(clickable ||
+                    hasGuiAgentPoster ||
                     hasSingleActionLink ||
                     hasDynamicPlanningLink) && (
                     <Stack
@@ -308,6 +318,23 @@ export default function WorkExperience() {
                           {exp.company === "TSMC"
                             ? "View System Illustration"
                             : "View Preview"}
+                        </Button>
+                      )}
+
+                      {hasGuiAgentPoster && (
+                        <Button
+                          variant="outlined"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenGuiAgentPoster(exp);
+                          }}
+                          sx={{
+                            fontWeight: 700,
+                            borderRadius: "999px",
+                            textTransform: "none",
+                          }}
+                        >
+                          GUI Agent
                         </Button>
                       )}
 

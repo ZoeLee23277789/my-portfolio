@@ -682,6 +682,54 @@ nav {
   transform: translateY(-1px);
 }
 
+.project-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 14px;
+}
+
+.project-action-row .project-toggle-btn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.project-result-modal {
+  margin-top: 4px;
+}
+
+.project-result-image-card {
+  min-height: 340px;
+  max-height: 420px;
+  padding: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: #f8fafc;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.project-result-image {
+  height: 100%;
+  max-height: 380px;
+}
+
+@media (max-width: 820px) {
+  .project-result-modal {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-result-image-card {
+    min-height: 260px;
+    max-height: none;
+    padding: 12px;
+  }
+
+  .project-result-image {
+    max-height: 360px;
+  }
+}
+
 .project-image-gallery {
   display: flex;
   flex-direction: column;
